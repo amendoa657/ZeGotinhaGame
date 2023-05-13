@@ -1,0 +1,95 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://musics/mcpipokinha-bota-na-pipokinha-2b327a8f.mp3" type="AudioStream" id=1]
+[ext_resource path="res://cenas/MainGame.gd" type="Script" id=2]
+[ext_resource path="res://cenas/nuvemfoda.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/ceu.png" type="Texture" id=4]
+[ext_resource path="res://cenas/Position2D.gd" type="Script" id=5]
+[ext_resource path="res://scripts/AudioStreamPlayer2D.gd" type="Script" id=6]
+[ext_resource path="res://cenas/MobileControls.tscn" type="PackedScene" id=7]
+[ext_resource path="res://cenas/IntanceSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://cenas/Node2D.gd" type="Script" id=9]
+[ext_resource path="res://cenas/ZeGota.tscn" type="PackedScene" id=10]
+[ext_resource path="res://cenas/parede.tscn" type="PackedScene" id=11]
+[ext_resource path="res://cenas/CoronaVirus.tscn" type="PackedScene" id=12]
+[ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=13]
+[ext_resource path="res://cenas/gui.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15.1976, 18.5349 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends CanvasLayer
+
+"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Ceu" type="Sprite" parent="."]
+position = Vector2( 273.181, 159.984 )
+scale = Vector2( 0.534429, 0.530052 )
+texture = ExtResource( 4 )
+
+[node name="CollisionLeft" parent="." instance=ExtResource( 11 )]
+position = Vector2( -18, 132 )
+rotation = 1.5708
+scale = Vector2( 11.9756, -1.07128 )
+
+[node name="Area2D" type="Area2D" parent="CollisionLeft"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionLeft/Area2D"]
+position = Vector2( 0.835023, 8.53492 )
+shape = SubResource( 2 )
+
+[node name="CollisionUp" parent="." instance=ExtResource( 11 )]
+position = Vector2( 250, -16 )
+scale = Vector2( 15.7189, 0.887609 )
+
+[node name="CollisionDown" parent="." instance=ExtResource( 11 )]
+position = Vector2( 86, 322 )
+scale = Vector2( 26.3021, 1.30689 )
+
+[node name="Nuvem" parent="." instance=ExtResource( 3 )]
+position = Vector2( 193, 348 )
+collision_layer = 2
+
+[node name="PI PO KI NHA" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 1, 2 )
+stream = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 256, 150 )
+zoom = Vector2( 1.5, 1.5 )
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="NuvemSpawner" parent="." instance=ExtResource( 8 )]
+
+[node name="Position2D" type="Position2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="Position2D"]
+wait_time = 3.0
+autostart = true
+
+[node name="ZeGota" parent="." instance=ExtResource( 10 )]
+position = Vector2( 52, 122 )
+scale = Vector2( 1.25, 1.25 )
+
+[node name="CoronaVirus" parent="." instance=ExtResource( 12 )]
+position = Vector2( 578, 184 )
+collision_layer = 2
+
+[node name="MobileControls" parent="." instance=ExtResource( 7 )]
+visible = false
+script = SubResource( 3 )
+
+[node name="Transicaofoda" parent="." instance=ExtResource( 13 )]
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 14 )]
+
+[connection signal="body_entered" from="CollisionLeft/Area2D" to="CollisionLeft" method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Position2D/Timer" to="Position2D" method="_on_corona_timeout"]

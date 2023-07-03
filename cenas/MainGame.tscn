@@ -1,95 +1,258 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://musics/mcpipokinha-bota-na-pipokinha-2b327a8f.mp3" type="AudioStream" id=1]
+[ext_resource path="res://scripts/Dengue.gd" type="Script" id=1]
 [ext_resource path="res://cenas/MainGame.gd" type="Script" id=2]
 [ext_resource path="res://cenas/nuvemfoda.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sprites/ceu.png" type="Texture" id=4]
+[ext_resource path="res://sprites/sky.png" type="Texture" id=4]
 [ext_resource path="res://cenas/Position2D.gd" type="Script" id=5]
-[ext_resource path="res://scripts/AudioStreamPlayer2D.gd" type="Script" id=6]
+[ext_resource path="res://scripts/particle.gd" type="Script" id=6]
 [ext_resource path="res://cenas/MobileControls.tscn" type="PackedScene" id=7]
-[ext_resource path="res://cenas/IntanceSpawner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://cenas/Node2D.gd" type="Script" id=9]
+[ext_resource path="res://scripts/Position2D.gd" type="Script" id=8]
+[ext_resource path="res://cenas/particle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://cenas/ZeGota.tscn" type="PackedScene" id=10]
 [ext_resource path="res://cenas/parede.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cenas/CoronaVirus.tscn" type="PackedScene" id=12]
 [ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=13]
-[ext_resource path="res://cenas/gui.tscn" type="PackedScene" id=14]
+[ext_resource path="res://cenas/Control.gd" type="Script" id=14]
+[ext_resource path="res://cenas/multiply.gd" type="Script" id=15]
+[ext_resource path="res://cenas/Dengue_atack.tscn" type="PackedScene" id=16]
+[ext_resource path="res://sprites/Dengue/dengue.png" type="Texture" id=17]
+[ext_resource path="res://cenas/Label.gd" type="Script" id=18]
+[ext_resource path="res://themes/buttom.tres" type="Theme" id=19]
+[ext_resource path="res://sprites/barradevida.png" type="Texture" id=20]
+[ext_resource path="res://cenas/pause.tscn" type="PackedScene" id=21]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 342, 145 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "foda"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 342, 145 ), Vector2( 225, 145 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 512, 268 )
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.0
+height = 32.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 15.1976, 18.5349 )
+extents = Vector2( 987.438, 583.812 )
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends CanvasLayer
 
 "
 
+[sub_resource type="Curve" id=6]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 400, 400, 400 )
+flag_disable_z = true
+spread = 45.46
+gravity = Vector3( -98, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -85.6
+angle_random = 1.0
+angle_curve = SubResource( 7 )
+scale = 0.5
+scale_random = 0.2
+hue_variation = 1.0
+anim_speed = 1.0
+anim_speed_random = 1.0
+
 [node name="Node2D" type="Node2D"]
+position = Vector2( 1, 0 )
 script = ExtResource( 2 )
 
-[node name="Ceu" type="Sprite" parent="."]
-position = Vector2( 273.181, 159.984 )
-scale = Vector2( 0.534429, 0.530052 )
+[node name="multiply" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 15 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 342, 145 )
 texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+autoplay = "foda"
+anims/RESET = SubResource( 4 )
+anims/foda = SubResource( 5 )
 
 [node name="CollisionLeft" parent="." instance=ExtResource( 11 )]
 position = Vector2( -18, 132 )
 rotation = 1.5708
 scale = Vector2( 11.9756, -1.07128 )
 
-[node name="Area2D" type="Area2D" parent="CollisionLeft"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionLeft/Area2D"]
-position = Vector2( 0.835023, 8.53492 )
-shape = SubResource( 2 )
-
 [node name="CollisionUp" parent="." instance=ExtResource( 11 )]
 position = Vector2( 250, -16 )
 scale = Vector2( 15.7189, 0.887609 )
 
 [node name="CollisionDown" parent="." instance=ExtResource( 11 )]
-position = Vector2( 86, 322 )
+position = Vector2( 360, 309 )
 scale = Vector2( 26.3021, 1.30689 )
 
 [node name="Nuvem" parent="." instance=ExtResource( 3 )]
 position = Vector2( 193, 348 )
 collision_layer = 2
 
-[node name="PI PO KI NHA" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 1, 2 )
-stream = ExtResource( 1 )
-script = ExtResource( 6 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 256, 150 )
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 4, 4 )
 
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource( 9 )
+[node name="NuvemSpawner" type="Position2D" parent="."]
+position = Vector2( 259, 122 )
+script = ExtResource( 8 )
 
-[node name="NuvemSpawner" parent="." instance=ExtResource( 8 )]
+[node name="Nuvem" type="Timer" parent="NuvemSpawner"]
+wait_time = 2.2
+autostart = true
 
 [node name="Position2D" type="Position2D" parent="."]
 script = ExtResource( 5 )
 
-[node name="Timer" type="Timer" parent="Position2D"]
-wait_time = 3.0
+[node name="Dengue" type="Timer" parent="Position2D"]
+wait_time = 4.5
+
+[node name="Corona" type="Timer" parent="Position2D"]
+wait_time = 4.5
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="Position2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Area2D"]
+visible = false
+position = Vector2( 251, 87 )
+shape = SubResource( 9 )
 
 [node name="ZeGota" parent="." instance=ExtResource( 10 )]
 position = Vector2( 52, 122 )
 scale = Vector2( 1.25, 1.25 )
+spd = 150
 
 [node name="CoronaVirus" parent="." instance=ExtResource( 12 )]
 position = Vector2( 578, 184 )
 collision_layer = 2
 
-[node name="MobileControls" parent="." instance=ExtResource( 7 )]
+[node name="Dengue" type="KinematicBody2D" parent="."]
+position = Vector2( 259, -151 )
+script = ExtResource( 1 )
+spd = 278
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dengue"]
+position = Vector2( 1, 0 )
+rotation = 1.5708
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="Dengue"]
+position = Vector2( 824, 722 )
+texture = ExtResource( 17 )
+offset = Vector2( 4, 9 )
+
+[node name="Area2D" type="Area2D" parent="Dengue"]
 visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dengue/Area2D"]
+position = Vector2( -1, 4 )
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="Dengue"]
+wait_time = 1.5
+autostart = true
+
+[node name="Dengue_atack" parent="Dengue" instance=ExtResource( 16 )]
+visible = false
+position = Vector2( -0.999969, 2.99997 )
+
+[node name="MobileControls" parent="." instance=ExtResource( 7 )]
 script = SubResource( 3 )
 
 [node name="Transicaofoda" parent="." instance=ExtResource( 13 )]
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 14 )]
+[node name="GUI" type="CanvasLayer" parent="."]
 
-[connection signal="body_entered" from="CollisionLeft/Area2D" to="CollisionLeft" method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="Position2D/Timer" to="Position2D" method="_on_corona_timeout"]
+[node name="Label" type="Label" parent="GUI"]
+margin_left = 244.0
+margin_top = 23.0
+margin_right = 284.0
+margin_bottom = 41.0
+theme = ExtResource( 19 )
+script = ExtResource( 18 )
+
+[node name="pause" parent="GUI" instance=ExtResource( 21 )]
+visible = false
+
+[node name="Control" type="Control" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 14 )
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/Control"]
+margin_left = 14.0
+margin_top = 19.0
+margin_right = 208.0
+margin_bottom = 37.0
+theme = ExtResource( 19 )
+value = 100.0
+percent_visible = false
+
+[node name="Barradevida" type="Sprite" parent="GUI/Control"]
+position = Vector2( 16, 24 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 20 )
+
+[node name="Timer" type="Timer" parent="GUI"]
+autostart = true
+
+[node name="Particles2D" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 385, 245 )
+amount = 500
+lifetime = 1.5
+process_material = SubResource( 8 )
+script = ExtResource( 6 )
+
+[connection signal="timeout" from="multiply" to="." method="_on_multiply_timeout"]
+[connection signal="timeout" from="multiply" to="multiply" method="_on_multiply_timeout"]
+[connection signal="timeout" from="multiply" to="Position2D" method="_on_multiply_timeout"]
+[connection signal="timeout" from="multiply" to="CoronaVirus" method="_on_multiply_timeout"]
+[connection signal="timeout" from="NuvemSpawner/Nuvem" to="NuvemSpawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Position2D/Dengue" to="Position2D" method="_on_Dengue_timeout"]
+[connection signal="timeout" from="Position2D/Corona" to="Position2D" method="_on_corona_timeout"]
+[connection signal="body_entered" from="Position2D/Area2D" to="Position2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Dengue/Area2D" to="Dengue" method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Dengue/Timer" to="Dengue" method="_on_Timer_timeout"]
+[connection signal="timeout" from="GUI/Timer" to="GUI/Label" method="_on_Timer_timeout"]

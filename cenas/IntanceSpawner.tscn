@@ -10,9 +10,4 @@ script = ExtResource( 1 )
 wait_time = 2.2
 autostart = true
 
-[node name="corona" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
 [connection signal="timeout" from="Nuvem" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="corona" to="." method="_on_corona_timeout"]

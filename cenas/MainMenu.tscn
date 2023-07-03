@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=2]
+[ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/menuback/MenuBackground2.png" type="Texture" id=4]
 [ext_resource path="res://sprites/menuback/MenuBackground1.png" type="Texture" id=5]
 [ext_resource path="res://sprites/title.png" type="Texture" id=6]
@@ -10,6 +11,8 @@
 [ext_resource path="res://sprites/menuback/MenuBackground5.png" type="Texture" id=9]
 [ext_resource path="res://cenas/BirdMenuSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://shaders/Shaders_Transition.tres" type="Shader" id=11]
+[ext_resource path="res://addons/simple-gui-transitions/transition.gd" type="Script" id=12]
+[ext_resource path="res://cenas/options.tscn" type="PackedScene" id=13]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -18,15 +21,6 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
-
-[sub_resource type="Environment" id=1]
-background_mode = 1
-background_energy = 7.49
-glow_enabled = true
-glow_intensity = 1.56
-glow_strength = 1.43
-glow_blend_mode = 1
-glow_high_quality = true
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 11 )
@@ -78,21 +72,31 @@ script = ExtResource( 1 )
 position = Vector2( 211.778, 94 )
 scale = Vector2( 2.685, 2.685 )
 frames = SubResource( 2 )
-frame = 1
+frame = 4
 playing = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Position2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( 209, 95 )
+
+[node name="Node2D" parent="." instance=ExtResource( 13 )]
+position = Vector2( -455, 53 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 180.0
-margin_top = 179.0
-margin_right = 246.0
-margin_bottom = 244.0
+margin_left = 160.0
+margin_top = 159.0
+margin_right = 226.0
+margin_bottom = 224.0
 rect_pivot_offset = Vector2( -136, -116 )
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="Control/VBoxContainer"]
 margin_right = 66.0
 margin_bottom = 18.0
 focus_neighbour_top = NodePath("../Exit")
@@ -100,17 +104,14 @@ theme = ExtResource( 2 )
 theme_type_variation = "normal"
 text = "Start"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Start"]
-environment = SubResource( 1 )
-
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="Control/VBoxContainer"]
 margin_top = 22.0
 margin_right = 66.0
 margin_bottom = 40.0
 theme = ExtResource( 2 )
 text = "Options"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="Control/VBoxContainer"]
 margin_top = 44.0
 margin_right = 66.0
 margin_bottom = 62.0
@@ -118,32 +119,42 @@ focus_neighbour_bottom = NodePath("../Start")
 theme = ExtResource( 2 )
 text = "Exit"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Control"]
 position = Vector2( 210, 95 )
 zoom = Vector2( 1.5, 1.5 )
 
-[node name="Title" type="Sprite" parent="."]
+[node name="Title" type="Sprite" parent="Control"]
 position = Vector2( 216, 23 )
 scale = Vector2( 0.822917, 0.822917 )
 texture = ExtResource( 6 )
 
-[node name="Position2D" parent="." instance=ExtResource( 10 )]
-position = Vector2( 209, 95 )
+[node name="Transicao" parent="Control" instance=ExtResource( 3 )]
 
-[node name="transition" type="CanvasLayer" parent="."]
+[node name="transition" type="CanvasLayer" parent="Control"]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="transition"]
+[node name="ColorRect" type="ColorRect" parent="Control/transition"]
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="transition/ColorRect"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/transition/ColorRect"]
 anims/RESET = SubResource( 4 )
 anims/in_Anim = SubResource( 5 )
 
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
-[connection signal="animation_finished" from="transition/ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[node name="GuiTransition" type="Node" parent="Control"]
+script = ExtResource( 12 )
+auto_start = 1
+fade_layout = 1
+animation_enter = 0
+animation_leave = 0
+duration = 0.5
+layout = NodePath("../VBoxContainer")
+group = NodePath("../VBoxContainer")
+transition_type = "CUBIC"
+
+[connection signal="pressed" from="Control/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="animation_finished" from="Control/transition/ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

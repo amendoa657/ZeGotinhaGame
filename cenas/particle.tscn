@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_box_extents = Vector3( 6, 5, 6 )
+flag_disable_z = true
+gravity = Vector3( -95, 0, 0 )
+angular_velocity = 612.74
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 15.0
+angle = 557.6
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
+
+[node name="Particles2D" type="Particles2D"]
+position = Vector2( 43, 381 )
+amount = 6
+fract_delta = false
+process_material = SubResource( 1 )

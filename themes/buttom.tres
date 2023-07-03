@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=17 format=2]
+
+[ext_resource path="res://themes/alternativemainfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/buttons/theme/checkbox_unchecked.png" type="Texture" id=2]
+[ext_resource path="res://sprites/buttons/theme/checkbox_checked.png" type="Texture" id=3]
+[ext_resource path="res://themes/fontefoda.tres" type="DynamicFont" id=4]
+[ext_resource path="res://sprites/buttons/theme/background.png" type="Texture" id=5]
+[ext_resource path="res://sprites/gui/lifebar.png" type="Texture" id=6]
+[ext_resource path="res://sprites/gui/lifebarinterior.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, -13, 0, 0 )
+expand_margin_right = 43.0
+expand_margin_top = 34.0
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 7 )
+region_rect = Rect2( -0.011, -13.959, 0, 0 )
+expand_margin_right = 43.0
+expand_margin_top = 46.0
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+
+[resource]
+default_font = ExtResource( 4 )
+Button/colors/font_color_focus = Color( 0.0431373, 0.686275, 0.901961, 1 )
+Button/colors/font_color_hover = Color( 0.0431373, 0.686275, 0.901961, 1 )
+Button/fonts/focus = ExtResource( 4 )
+Button/fonts/font = ExtResource( 4 )
+Button/styles/disabled = SubResource( 3 )
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 5 )
+Button/styles/normal = SubResource( 6 )
+Button/styles/pressed = SubResource( 7 )
+CheckBox/colors/font_color_focus = Color( 0.0431373, 0.686275, 0.901961, 1 )
+CheckBox/colors/font_color_hover = Color( 0.0431373, 0.686275, 0.901961, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckBox/fonts/font = ExtResource( 4 )
+CheckBox/icons/checked = ExtResource( 3 )
+CheckBox/icons/unchecked = ExtResource( 2 )
+Control/icons/bg = ExtResource( 5 )
+OptionButton/fonts/font = ExtResource( 4 )
+ProgressBar/fonts/font = ExtResource( 1 )
+ProgressBar/styles/bg = SubResource( 10 )
+ProgressBar/styles/fg = SubResource( 11 )
+TabContainer/fonts/font = ExtResource( 4 )
+TabContainer/styles/panel = SubResource( 9 )
+VBoxContainer/constants/separation = 10
+VBoxContainer/icons/bg = ExtResource( 5 )
+VBoxContainer/styles/background = SubResource( 8 )

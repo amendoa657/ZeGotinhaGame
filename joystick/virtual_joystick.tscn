@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/buttons/mobile/mobile_maincircle.png" type="Texture" id=1]
+[ext_resource path="res://sprites/buttons/mobile/mobile_littlecircle.png" type="Texture" id=2]
+[ext_resource path="res://joystick/virtual_joystick.gd" type="Script" id=3]
+
+[node name="Virtual joystick" type="Control"]
+modulate = Color( 1, 1, 1, 0.509804 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = -50.0
+script = ExtResource( 3 )
+clampzone_size = 20.0
+
+[node name="Base" type="TextureRect" parent="."]
+margin_left = 25.4047
+margin_top = 76.5984
+margin_right = 100.405
+margin_bottom = 151.598
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 38, 38 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Tip" type="TextureRect" parent="Base"]
+margin_left = -0.774536
+margin_top = -0.251114
+margin_right = 74.2255
+margin_bottom = 74.7489
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 38, 38 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 2 )
+stretch_mode = 1

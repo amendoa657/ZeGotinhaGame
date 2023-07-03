@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="128" alt="Simple GUI Transitions" src="addons/simple-gui-transitions/icon.png">
+  <img height="128" alt="Simple GUI Transitions" src="icon.png">
 </p>
 <h1 align="center">Godot's Simple GUI Transitions</h1>
 

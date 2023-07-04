@@ -3,9 +3,6 @@
 </p>
 <h1 align="center">Ze Gotinha Adventures</h1>
 
-*"Simple GUI transitions to swap menus elegantly."*
-
-This plugin gives access to the `GuiTransition` node which allows to transition multiple GUI layouts easily. Designed for Godot 3.5.x.
-See the example scene on `addons/simple-gui-transitions/example` to see it in action.
-
+Eu tive a ideia desse jogo em 2019 onde fiz ele no game maker studio 2 e claramente o jogo ficou ruim pois eu tinha 10 anos ;-;.
+Recentemente eu lembrei desse jogo e decidi refazelo em uma engine melhor pra aprender mais sobre godot e passar o tempo e esse foi o resultado. (o projeto nao ta pronto nem acabado so desacelerei o desenvolvimento)
 <h1 align="center">Baixe a engine aqui!: https://godotengine.org/download/</h1>

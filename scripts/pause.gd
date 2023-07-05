@@ -3,6 +3,7 @@ extends Control
 var paused = false setget set_paused
 var options = preload("res://cenas/optionspause.tscn")
 var process_verify = true
+var reset=false
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -35,3 +36,7 @@ func _process(delta: float) -> void:
 	if ($Node2D.on_options == false) and (process_verify==true):
 		$CenterContainer/VBoxContainer/resume.grab_focus()
 		process_verify=false
+
+
+func _on_reiniciar_pressed():
+	reset=true

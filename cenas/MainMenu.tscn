@@ -72,7 +72,7 @@ script = ExtResource( 1 )
 position = Vector2( 211.778, 94 )
 scale = Vector2( 2.685, 2.685 )
 frames = SubResource( 2 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="Position2D" parent="." instance=ExtResource( 10 )]

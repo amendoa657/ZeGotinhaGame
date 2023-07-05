@@ -36,6 +36,7 @@ color = Color( 0.109804, 0.156863, 0.301961, 0.376471 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 255, 107 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="PauseIcon" type="Sprite" parent="."]
@@ -46,14 +47,14 @@ texture = ExtResource( 9 )
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 33.0
-margin_bottom = 33.0
+margin_top = 47.0
+margin_bottom = 47.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 187.0
-margin_top = 100.0
+margin_top = 89.0
 margin_right = 325.0
-margin_bottom = 188.0
+margin_bottom = 199.0
 custom_constants/separation = 4
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
@@ -64,25 +65,36 @@ margin_top = 4.0
 margin_right = 138.0
 margin_bottom = 22.0
 focus_neighbour_top = NodePath("../quit")
-focus_neighbour_bottom = NodePath("../options")
+focus_neighbour_bottom = NodePath("../reiniciar")
 focus_mode = 1
 enabled_focus_mode = 1
 text = "voltar ao jogo"
 
-[node name="options" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="reiniciar" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 26.0
 margin_right = 138.0
 margin_bottom = 44.0
 focus_neighbour_top = NodePath("../resume")
+focus_neighbour_bottom = NodePath("../options")
+focus_mode = 1
+theme = ExtResource( 1 )
+enabled_focus_mode = 1
+text = "reiniciar"
+
+[node name="options" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 138.0
+margin_bottom = 66.0
+focus_neighbour_top = NodePath("../reiniciar")
 focus_neighbour_bottom = NodePath("../menu")
 focus_mode = 1
 enabled_focus_mode = 1
 text = "opcoes"
 
 [node name="menu" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 48.0
+margin_top = 70.0
 margin_right = 138.0
-margin_bottom = 66.0
+margin_bottom = 88.0
 focus_neighbour_top = NodePath("../options")
 focus_neighbour_bottom = NodePath("../quit")
 focus_mode = 1
@@ -90,9 +102,9 @@ enabled_focus_mode = 1
 text = "ir ao menu"
 
 [node name="quit" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 70.0
+margin_top = 92.0
 margin_right = 138.0
-margin_bottom = 88.0
+margin_bottom = 110.0
 focus_neighbour_top = NodePath("../menu")
 focus_neighbour_bottom = NodePath("../resume")
 focus_mode = 1
@@ -195,6 +207,7 @@ layout = NodePath("../Control/TabContainer/Control/VBoxContainer")
 group = NodePath("../Control/TabContainer/Control/VBoxContainer")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/resume" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/menu" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

@@ -20,6 +20,10 @@ func _process(delta: float) -> void:
 	if ($Sprite/AnimationPlayer.playback_speed<=7.0):
 		multiply=false
 	$GUI/Control/ProgressBar.value=$ZeGota.vida
+	if ($GUI/pause.reset==true):
+		$GUI/pause.paused=false
+		get_tree().reload_current_scene()
+		$GUI/pause.reset=false
 
 func _on_multiply_timeout() -> void:
 	$Sprite/AnimationPlayer.playback_speed+=0.005

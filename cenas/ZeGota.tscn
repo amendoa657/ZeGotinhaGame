@@ -81,7 +81,7 @@ script = ExtResource( 1 )
 position = Vector2( 3, 0 )
 frames = SubResource( 1 )
 animation = "Zegotanew"
-frame = 2
+frame = 1
 playing = true
 
 [node name="NormalCollision" type="CollisionShape2D" parent="." groups=["zegota"]]

@@ -1,14 +1,14 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/Dengue.gd" type="Script" id=1]
 [ext_resource path="res://cenas/MainGame.gd" type="Script" id=2]
 [ext_resource path="res://cenas/nuvemfoda.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/sky.png" type="Texture" id=4]
 [ext_resource path="res://cenas/Position2D.gd" type="Script" id=5]
-[ext_resource path="res://scripts/particle.gd" type="Script" id=6]
+[ext_resource path="res://particles/chuvas.tres" type="Material" id=6]
 [ext_resource path="res://cenas/MobileControls.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/Position2D.gd" type="Script" id=8]
-[ext_resource path="res://cenas/particle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://cenas/Particles2D.gd" type="Script" id=9]
 [ext_resource path="res://cenas/ZeGota.tscn" type="PackedScene" id=10]
 [ext_resource path="res://cenas/parede.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cenas/CoronaVirus.tscn" type="PackedScene" id=12]
@@ -21,6 +21,7 @@
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=19]
 [ext_resource path="res://sprites/barradevida.png" type="Texture" id=20]
 [ext_resource path="res://cenas/pause.tscn" type="PackedScene" id=21]
+[ext_resource path="res://particles/chuva.png" type="Texture" id=22]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -67,31 +68,6 @@ extents = Vector2( 987.438, 583.812 )
 script/source = "extends CanvasLayer
 
 "
-
-[sub_resource type="Curve" id=6]
-min_value = -360.0
-max_value = 360.0
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 360 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
-
-[sub_resource type="ParticlesMaterial" id=8]
-emission_shape = 2
-emission_box_extents = Vector3( 400, 400, 400 )
-flag_disable_z = true
-spread = 45.46
-gravity = Vector3( -98, 98, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = -85.6
-angle_random = 1.0
-angle_curve = SubResource( 7 )
-scale = 0.5
-scale_random = 0.2
-hue_variation = 1.0
-anim_speed = 1.0
-anim_speed_random = 1.0
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -167,7 +143,7 @@ position = Vector2( 578, 184 )
 collision_layer = 2
 
 [node name="Dengue" type="KinematicBody2D" parent="."]
-position = Vector2( 259, -151 )
+position = Vector2( -380, -276 )
 script = ExtResource( 1 )
 spd = 278
 
@@ -178,7 +154,7 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="Sprite" type="Sprite" parent="Dengue"]
-position = Vector2( 824, 722 )
+position = Vector2( 3, 0 )
 texture = ExtResource( 17 )
 offset = Vector2( 4, 9 )
 
@@ -237,18 +213,24 @@ texture = ExtResource( 20 )
 [node name="Timer" type="Timer" parent="GUI"]
 autostart = true
 
-[node name="Particles2D" parent="." instance=ExtResource( 9 )]
-visible = false
-position = Vector2( 385, 245 )
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 474, -65 )
+emitting = false
 amount = 500
-lifetime = 1.5
-process_material = SubResource( 8 )
-script = ExtResource( 6 )
+lifetime = 3.0
+process_material = ExtResource( 6 )
+texture = ExtResource( 22 )
+script = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="Particles2D"]
+wait_time = 20.0
+one_shot = true
 
 [connection signal="timeout" from="multiply" to="." method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="multiply" method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="Position2D" method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="CoronaVirus" method="_on_multiply_timeout"]
+[connection signal="timeout" from="multiply" to="Particles2D" method="_on_multiply_timeout"]
 [connection signal="timeout" from="NuvemSpawner/Nuvem" to="NuvemSpawner" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Position2D/Dengue" to="Position2D" method="_on_Dengue_timeout"]
 [connection signal="timeout" from="Position2D/Corona" to="Position2D" method="_on_corona_timeout"]
@@ -256,3 +238,4 @@ script = ExtResource( 6 )
 [connection signal="body_entered" from="Dengue/Area2D" to="Dengue" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Dengue/Timer" to="Dengue" method="_on_Timer_timeout"]
 [connection signal="timeout" from="GUI/Timer" to="GUI/Label" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Particles2D/Timer" to="Particles2D" method="_on_Timer_timeout"]

@@ -4,6 +4,7 @@ export var spd = 100
 var dir
 var dengue_atack = preload("res://cenas/Dengue_atack.tscn")
 var randtime = rand_range(0.5, 1.5)
+var repetir = true
 
 func _ready() -> void:
 	randtime = rand_range(0.5, 1.5)
@@ -21,9 +22,11 @@ func _on_Area2D_body_entered(body: Node) -> void:
 			dir = self.global_position.direction_to(player_ref.global_position)
 
 func _on_Timer_timeout() -> void:
-	var a = dengue_atack.instance()
-	get_node("/root").add_child(a)
-	a.global_position = self.global_position
+	if (repetir==true):
+		var a = dengue_atack.instance()
+		get_node("/root").add_child(a)
+		a.global_position = self.global_position
+		repetir=false
 
 
 func _on_Damage_body_entered(body: Node) -> void:

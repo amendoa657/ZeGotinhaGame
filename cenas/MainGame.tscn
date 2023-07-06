@@ -176,8 +176,6 @@ position = Vector2( -0.999969, 2.99997 )
 [node name="MobileControls" parent="." instance=ExtResource( 7 )]
 script = SubResource( 3 )
 
-[node name="Transicaofoda" parent="." instance=ExtResource( 13 )]
-
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="GUI"]
@@ -225,6 +223,8 @@ script = ExtResource( 9 )
 [node name="Timer" type="Timer" parent="Particles2D"]
 wait_time = 20.0
 one_shot = true
+
+[node name="Transicaofoda" parent="." instance=ExtResource( 13 )]
 
 [connection signal="timeout" from="multiply" to="." method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="multiply" method="_on_multiply_timeout"]

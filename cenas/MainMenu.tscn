@@ -97,27 +97,27 @@ margin_bottom = 224.0
 rect_pivot_offset = Vector2( -136, -116 )
 
 [node name="Start" type="Button" parent="Control/VBoxContainer"]
-margin_right = 66.0
+margin_right = 70.0
 margin_bottom = 18.0
 focus_neighbour_top = NodePath("../Exit")
 theme = ExtResource( 2 )
 theme_type_variation = "normal"
-text = "Start"
+text = "comecar"
 
 [node name="Options" type="Button" parent="Control/VBoxContainer"]
 margin_top = 22.0
-margin_right = 66.0
+margin_right = 70.0
 margin_bottom = 40.0
 theme = ExtResource( 2 )
-text = "Options"
+text = "Opcoes"
 
 [node name="Exit" type="Button" parent="Control/VBoxContainer"]
 margin_top = 44.0
-margin_right = 66.0
+margin_right = 70.0
 margin_bottom = 62.0
 focus_neighbour_bottom = NodePath("../Start")
 theme = ExtResource( 2 )
-text = "Exit"
+text = "sair"
 
 [node name="Camera2D" type="Camera2D" parent="Control"]
 position = Vector2( 210, 95 )

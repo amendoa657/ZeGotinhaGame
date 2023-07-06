@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=1]
 [ext_resource path="res://cenas/options.gd" type="Script" id=3]
 [ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/simple-gui-transitions/transition.gd" type="Script" id=5]
 [ext_resource path="res://sprites/buttons/theme/backicon.png" type="Texture" id=6]
 [ext_resource path="res://sprites/menubackoptions/MenuBackground2.png" type="Texture" id=7]
 
@@ -65,38 +64,6 @@ position = Vector2( 256, 145 )
 zoom = Vector2( 0.267, 0.267 )
 
 [node name="Transicao" parent="." instance=ExtResource( 4 )]
-
-[node name="1" type="Node" parent="."]
-script = ExtResource( 5 )
-auto_start = 1
-fade_layout = 0
-animation_enter = 4
-duration = 0.7
-delay = 0.0
-layout = NodePath("../Control")
-group = NodePath("../Control")
-
-[node name="2" type="Node" parent="."]
-script = ExtResource( 5 )
-auto_start = 1
-fade_layout = 0
-animation_enter = 0
-animation_leave = 0
-duration = 0.3
-delay = 0.0
-layout = NodePath("../Control/TabContainer/Control")
-group = NodePath("../Control/TabContainer/Control")
-
-[node name="3" type="Node" parent="."]
-script = ExtResource( 5 )
-auto_start = 1
-fade_layout = 0
-animation_enter = 0
-animation_leave = 0
-duration = 0.3
-delay = 0.0
-layout = NodePath("../Control/TabContainer/Control/VBoxContainer")
-group = NodePath("../Control/TabContainer/Control/VBoxContainer")
 
 [connection signal="toggled" from="Control/TabContainer/Control/VBoxContainer/telacheia" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="Control/TabContainer/Control/Voltar" to="." method="_on_Voltar_pressed"]

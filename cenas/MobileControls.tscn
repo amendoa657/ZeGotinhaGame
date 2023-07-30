@@ -50,3 +50,5 @@ margin_top = -154.918
 margin_right = 180.001
 margin_bottom = 45.0819
 deadzone_size = 5.0
+clampzone_size = 35.0
+joystick_mode = 1

@@ -4,6 +4,7 @@ var finished
 onready var transition = get_node("Control/Transicao/Fill")
 onready var animation = get_node("Control/Transicao/Fill/AnimationOut")
 var options = preload("res://cenas/options.tscn")
+var is_options = false
 
 func _ready():
 	animation.play("out_anim")
@@ -24,10 +25,13 @@ func _on_CheckBox_toggled(button_pressed):
 	OS.set_window_fullscreen(button_pressed)
 
 func _on_Options_pressed():
-	$Control.visible=false
+	is_options=true
 	var o = options.instance()
 	o.global_position = Vector2(-45, -50)
 	self.add_child(o)
 
 func _on_AnimationPlayer_animation_finished(in_Anim):
 	get_tree().change_scene("res://cenas/MainGame.tscn")
+	
+func _process(delta):
+	$Control.options=is_options

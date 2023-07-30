@@ -1,7 +1,7 @@
 extends Position2D
 
 var dengue_atack = preload("res://cenas/Dengue_atack.tscn")
-var covid = preload("res://cenas/CoronaVirus.tscn")
+var denv = preload("res://cenas/denv.tscn")
 var dengue = preload("res://cenas/Dengue.tscn")
 var player_ref = null
 var wait = true
@@ -9,7 +9,7 @@ var dengueataque
 
 func _on_corona_timeout():
 	var cy = player_ref.global_position.y
-	var c = covid.instance()
+	var c = denv.instance()
 	c.global_position = Vector2(600, cy)
 	self.add_child(c)
 

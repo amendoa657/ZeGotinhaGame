@@ -21,4 +21,8 @@ func _on_OptionButton_item_selected(index):
 	pass
 	
 func _process(delta):
+	if OS.window_fullscreen==true:
+		$Control/TabContainer/Control/VBoxContainer/telacheia.pressed=true
+	else:
+		$Control/TabContainer/Control/VBoxContainer/telacheia.pressed=false
 	print(on_options)

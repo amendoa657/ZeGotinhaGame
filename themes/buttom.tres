@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=2]
+[gd_resource type="Theme" load_steps=19 format=2]
 
 [ext_resource path="res://themes/alternativemainfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sprites/buttons/theme/checkbox_unchecked.png" type="Texture" id=2]
@@ -7,6 +7,14 @@
 [ext_resource path="res://sprites/buttons/theme/background.png" type="Texture" id=5]
 [ext_resource path="res://sprites/gui/lifebar.png" type="Texture" id=6]
 [ext_resource path="res://sprites/gui/lifebarinterior.png" type="Texture" id=7]
+[ext_resource path="res://fonts/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+outline_size = 1
+outline_color = Color( 0.160784, 0.552941, 0.85098, 1 )
+extra_spacing_bottom = -17
+font_data = ExtResource( 8 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
@@ -38,9 +46,8 @@ region_rect = Rect2( 0, 0, 256, 256 )
 
 [resource]
 default_font = ExtResource( 4 )
-Button/colors/font_color_focus = Color( 0.0431373, 0.686275, 0.901961, 1 )
-Button/colors/font_color_hover = Color( 0.0431373, 0.686275, 0.901961, 1 )
-Button/fonts/focus = ExtResource( 4 )
+Button/colors/font_color_focus = Color( 0.160784, 0.552941, 0.85098, 1 )
+Button/fonts/focus = SubResource( 12 )
 Button/fonts/font = ExtResource( 4 )
 Button/styles/disabled = SubResource( 3 )
 Button/styles/focus = SubResource( 4 )

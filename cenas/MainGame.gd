@@ -21,8 +21,6 @@ func _process(delta: float) -> void:
 		multiply=false
 	$GUI/Control/ProgressBar.value=$ZeGota.vida
 	if ($GUI/pause.reset==true):
-		$GUI/pause.paused=false
-		$GUI/pause.visible=false
 		get_tree().reload_current_scene()
 
 func _on_multiply_timeout() -> void:

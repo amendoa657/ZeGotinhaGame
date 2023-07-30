@@ -1,17 +1,15 @@
 extends Control
-
-
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+var options
+var pintonegro = 0 
+func _process(delta):
+	match options:
+		true:
+			self.visible=false
+		false:
+			self.visible=true
+	if (options==false and pintonegro==0):
+		$VBoxContainer/Start.grab_focus()
+		pintonegro+=1
+	if options==true:
+		pintonegro=0
 	
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass

@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 		move_and_slide(dir*spd)
 	if (self.global_position.x <= -50):
 		self.queue_free()
+	spd=spd*1.003
 
 func _on_Area2D_body_entered(body: Node) -> void:
 		if (body.name=="ZeGota"):

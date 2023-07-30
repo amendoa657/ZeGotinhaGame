@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=1]
 [ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/simple-gui-transitions/transition.gd" type="Script" id=3]
-[ext_resource path="res://sprites/buttons/theme/backicon.png" type="Texture" id=4]
 [ext_resource path="res://cenas/optionspause.gd" type="Script" id=5]
 [ext_resource path="res://sprites/menubackoptions/MenuBackground2.png" type="Texture" id=6]
 
@@ -43,7 +41,7 @@ margin_bottom = 55.0
 theme = ExtResource( 1 )
 
 [node name="telacheia" type="CheckBox" parent="Control/TabContainer/Control/VBoxContainer"]
-margin_right = 110.0
+margin_right = 150.0
 margin_bottom = 22.0
 focus_neighbour_top = NodePath("../../Voltar")
 pressed = true
@@ -52,14 +50,13 @@ text = "tela cheia"
 [node name="Voltar" type="Button" parent="Control/TabContainer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 233.0
-margin_right = -139.0
-margin_bottom = 7.0
+margin_left = -2.0
+margin_top = 223.0
+margin_right = -146.0
+margin_bottom = -3.0
 focus_neighbour_bottom = NodePath("../VBoxContainer/telacheia")
 theme = ExtResource( 1 )
 text = "voltar"
-icon = ExtResource( 4 )
 icon_align = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -67,38 +64,6 @@ position = Vector2( 256, 145 )
 zoom = Vector2( 0.267, 0.267 )
 
 [node name="Transicao" parent="." instance=ExtResource( 2 )]
-
-[node name="1" type="Node" parent="."]
-script = ExtResource( 3 )
-auto_start = 1
-fade_layout = 0
-animation_enter = 4
-duration = 0.7
-delay = 0.0
-layout = NodePath("../Control")
-group = NodePath("../Control")
-
-[node name="2" type="Node" parent="."]
-script = ExtResource( 3 )
-auto_start = 1
-fade_layout = 0
-animation_enter = 0
-animation_leave = 0
-duration = 0.3
-delay = 0.0
-layout = NodePath("../Control/TabContainer/Control")
-group = NodePath("../Control/TabContainer/Control")
-
-[node name="3" type="Node" parent="."]
-script = ExtResource( 3 )
-auto_start = 1
-fade_layout = 0
-animation_enter = 0
-animation_leave = 0
-duration = 0.3
-delay = 0.0
-layout = NodePath("../Control/TabContainer/Control/VBoxContainer")
-group = NodePath("../Control/TabContainer/Control/VBoxContainer")
 
 [connection signal="toggled" from="Control/TabContainer/Control/VBoxContainer/telacheia" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="Control/TabContainer/Control/Voltar" to="." method="_on_Voltar_pressed"]

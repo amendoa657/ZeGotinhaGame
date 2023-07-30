@@ -40,3 +40,4 @@ func _process(delta: float) -> void:
 
 func _on_reiniciar_pressed():
 	reset=true
+	self.paused=false

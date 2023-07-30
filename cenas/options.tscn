@@ -1,10 +1,39 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=1]
 [ext_resource path="res://cenas/options.gd" type="Script" id=3]
 [ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=4]
-[ext_resource path="res://sprites/buttons/theme/backicon.png" type="Texture" id=6]
 [ext_resource path="res://sprites/menubackoptions/MenuBackground2.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
@@ -37,26 +66,25 @@ anchor_bottom = 1.0
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/Control"]
 margin_left = 6.0
 margin_top = 5.0
-margin_right = 116.0
+margin_right = 168.0
 margin_bottom = 55.0
 theme = ExtResource( 1 )
 
 [node name="telacheia" type="CheckBox" parent="Control/TabContainer/Control/VBoxContainer"]
-margin_right = 110.0
+margin_right = 162.0
 margin_bottom = 22.0
 focus_neighbour_top = NodePath("../../Voltar")
 pressed = true
 text = "tela cheia"
 
 [node name="Voltar" type="Button" parent="Control/TabContainer/Control"]
-margin_left = -2.0
-margin_top = 233.0
+margin_left = -20.0
+margin_top = 224.0
 margin_right = 108.0
-margin_bottom = 265.0
+margin_bottom = 258.0
 focus_neighbour_bottom = NodePath("../VBoxContainer/telacheia")
 theme = ExtResource( 1 )
 text = "voltar"
-icon = ExtResource( 6 )
 icon_align = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -64,6 +92,12 @@ position = Vector2( 256, 145 )
 zoom = Vector2( 0.267, 0.267 )
 
 [node name="Transicao" parent="." instance=ExtResource( 4 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade"
+playback_speed = 1.6
+anims/RESET = SubResource( 1 )
+anims/fade = SubResource( 2 )
 
 [connection signal="toggled" from="Control/TabContainer/Control/VBoxContainer/telacheia" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="Control/TabContainer/Control/Voltar" to="." method="_on_Voltar_pressed"]

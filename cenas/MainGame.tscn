@@ -11,12 +11,12 @@
 [ext_resource path="res://cenas/Particles2D.gd" type="Script" id=9]
 [ext_resource path="res://cenas/ZeGota.tscn" type="PackedScene" id=10]
 [ext_resource path="res://cenas/parede.tscn" type="PackedScene" id=11]
-[ext_resource path="res://cenas/CoronaVirus.tscn" type="PackedScene" id=12]
+[ext_resource path="res://cenas/denv.tscn" type="PackedScene" id=12]
 [ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=13]
 [ext_resource path="res://cenas/Control.gd" type="Script" id=14]
 [ext_resource path="res://cenas/multiply.gd" type="Script" id=15]
 [ext_resource path="res://cenas/Dengue_atack.tscn" type="PackedScene" id=16]
-[ext_resource path="res://sprites/Dengue/dengue.png" type="Texture" id=17]
+[ext_resource path="res://sprites/Dengue/mosquitinho.png" type="Texture" id=17]
 [ext_resource path="res://cenas/Label.gd" type="Script" id=18]
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=19]
 [ext_resource path="res://sprites/barradevida.png" type="Texture" id=20]
@@ -180,9 +180,9 @@ script = SubResource( 3 )
 
 [node name="Label" type="Label" parent="GUI"]
 margin_left = 244.0
-margin_top = 23.0
+margin_top = 8.0
 margin_right = 284.0
-margin_bottom = 41.0
+margin_bottom = 27.0
 theme = ExtResource( 19 )
 script = ExtResource( 18 )
 

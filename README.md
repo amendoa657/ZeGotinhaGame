@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="256" alt="Simple GUI Transitions" src="sprites/zé gotinha logo.png">
+  <img height="256" alt="Simple GUI Transitions" src="zegotinhalogocomfundo.png">
 </p>
 
 Eu tive a ideia desse jogo em 2019 onde fiz ele no game maker studio 2 e claramente o jogo ficou ruim pois eu tinha 10 anos ;-;.

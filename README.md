@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="128" alt="Simple GUI Transitions" src="icon.png">
+  <img height="128" alt="Simple GUI Transitions" src="sprites/zé gotinha logo.png">
 </p>
 <h1 align="center">Ze Gotinha Adventures</h1>
 

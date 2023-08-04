@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://themes/buttom.tres" type="Theme" id=2]
 [ext_resource path="res://cenas/Transicao.tscn" type="PackedScene" id=3]
+[ext_resource path="res://cenas/options.gd" type="Script" id=4]
+[ext_resource path="res://sprites/tela de fundo sem zg.png" type="Texture" id=5]
 [ext_resource path="res://sprites/title.png" type="Texture" id=6]
 [ext_resource path="res://cenas/BirdMenuSpawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://shaders/Shaders_Transition.tres" type="Shader" id=11]
 [ext_resource path="res://addons/simple-gui-transitions/transition.gd" type="Script" id=12]
-[ext_resource path="res://cenas/options.tscn" type="PackedScene" id=13]
 [ext_resource path="res://cenas/Control.gd" type="Script" id=14]
 [ext_resource path="res://sprites/zé gotinha logo.png" type="Texture" id=15]
 [ext_resource path="res://sprites/tela de fundo.png" type="Texture" id=16]
@@ -54,6 +55,51 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "off_options"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "on_options"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 46, 51 )
 script = ExtResource( 1 )
@@ -65,14 +111,6 @@ texture = ExtResource( 16 )
 
 [node name="Position2D" parent="." instance=ExtResource( 10 )]
 position = Vector2( 209, 95 )
-
-[node name="Node2D" parent="." instance=ExtResource( 13 )]
-position = Vector2( -509, 59 )
-
-[node name="ZéGotinhaLogo" type="Sprite" parent="."]
-position = Vector2( 210, 45 )
-scale = Vector2( 0.646358, 0.646358 )
-texture = ExtResource( 15 )
 
 [node name="Control" type="Control" parent="."]
 margin_left = -19.0
@@ -151,7 +189,79 @@ layout = NodePath("../VBoxContainer")
 group = NodePath("../VBoxContainer")
 transition_type = "CUBIC"
 
+[node name="ZéGotinhaLogo" type="Sprite" parent="."]
+position = Vector2( 210, 45 )
+scale = Vector2( 0.646358, 0.646358 )
+texture = ExtResource( 15 )
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -46, -49 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+playback_speed = 3.0
+anims/RESET = SubResource( 6 )
+anims/off_options = SubResource( 7 )
+anims/on_options = SubResource( 8 )
+
+[node name="TelaDeFundoSemZg" type="Sprite" parent="Node2D"]
+position = Vector2( 259.449, 144 )
+scale = Vector2( 0.864, 0.864 )
+texture = ExtResource( 5 )
+
+[node name="Control" type="Control" parent="Node2D"]
+margin_left = 143.0
+margin_top = 16.0
+margin_right = 379.0
+margin_bottom = 275.0
+theme = ExtResource( 2 )
+
+[node name="TabContainer" type="TabContainer" parent="Node2D/Control"]
+margin_top = -2.0
+margin_right = 236.0
+margin_bottom = 259.0
+theme = ExtResource( 2 )
+tabs_visible = false
+drag_to_rearrange_enabled = true
+
+[node name="Control" type="Control" parent="Node2D/Control/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/Control/TabContainer/Control"]
+margin_left = 6.0
+margin_top = 5.0
+margin_right = 168.0
+margin_bottom = 55.0
+theme = ExtResource( 2 )
+
+[node name="telacheia" type="CheckBox" parent="Node2D/Control/TabContainer/Control/VBoxContainer"]
+margin_right = 168.0
+margin_bottom = 44.0
+focus_neighbour_top = NodePath("../../Voltar")
+pressed = true
+text = "tela cheia"
+
+[node name="Voltar" type="Button" parent="Node2D/Control/TabContainer/Control"]
+margin_left = -20.0
+margin_top = 224.0
+margin_right = 108.0
+margin_bottom = 258.0
+focus_neighbour_bottom = NodePath("../VBoxContainer/telacheia")
+theme = ExtResource( 2 )
+text = "voltar"
+icon_align = 2
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position = Vector2( 256, 145 )
+zoom = Vector2( 0.267, 0.267 )
+
+[node name="Transicao" parent="Node2D" instance=ExtResource( 3 )]
+
 [connection signal="pressed" from="Control/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="animation_finished" from="Control/transition/ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="toggled" from="Node2D/Control/TabContainer/Control/VBoxContainer/telacheia" to="Node2D" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="Node2D/Control/TabContainer/Control/Voltar" to="Node2D" method="_on_Voltar_pressed"]

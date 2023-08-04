@@ -15,7 +15,7 @@ func _on_CheckBox_toggled(button_pressed):
 
 func _on_Voltar_pressed():
 	get_parent().is_options=false
-	self.queue_free()
+	$AnimationPlayer.play("off_options")
 
 
 func _on_OptionButton_item_selected(index):

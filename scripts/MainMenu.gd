@@ -26,9 +26,8 @@ func _on_CheckBox_toggled(button_pressed):
 
 func _on_Options_pressed():
 	is_options=true
-	var o = options.instance()
-	o.global_position = Vector2(-45, -50)
-	self.add_child(o)
+	$Node2D/AnimationPlayer.play("on_options")
+	$Node2D/Control/TabContainer/Control/Voltar.grab_focus()
 
 func _on_AnimationPlayer_animation_finished(in_Anim):
 	get_tree().change_scene("res://cenas/MainGame.tscn")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://import/denv.png-3488a57e65ee2e2db451c2042cd351c4.stex"
+path="res://import/Zegota6.png-8fab3c20339f4bf0af99c582dcaa091a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Dengue/denv.png"
-dest_files=[ "res://import/denv.png-3488a57e65ee2e2db451c2042cd351c4.stex" ]
+source_file="res://sprites/ZeGota/Zegota6.png"
+dest_files=[ "res://import/Zegota6.png-8fab3c20339f4bf0af99c582dcaa091a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

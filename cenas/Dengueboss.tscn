@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprites/Dengue/mosquito da dengue.png" type="Texture" id=1]
 
@@ -21,6 +21,21 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "entrada"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 0.812252, 1 ),
+"update": 0,
+"values": [ Vector2( 365, 198 ), Vector2( 200, 198 ), Vector2( 0, 0 ) ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
 length = 0.8
@@ -38,20 +53,31 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -30 ), Vector2( 0, 0 ), Vector2( 0, 30 ) ]
 }
 
+[sub_resource type="AnimationNodeStateMachine" id=5]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
 [node name="Dengueboss" type="KinematicBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 379.25, 106.633 )
+position = Vector2( 379.25, 131.633 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="MosquitoDaDengue" type="Sprite" parent="."]
-position = Vector2( 350, 98.1335 )
+position = Vector2( 350, 123.133 )
 texture = ExtResource( 1 )
 offset = Vector2( 10, 40 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
-playback_speed = 0.8
+autoplay = "entrada"
+playback_speed = 0.6
 anims/RESET = SubResource( 2 )
+anims/entrada = SubResource( 4 )
 anims/idle = SubResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 6 )

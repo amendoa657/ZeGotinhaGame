@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/Dengue.gd" type="Script" id=1]
 [ext_resource path="res://cenas/MainGame.gd" type="Script" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://sprites/barradevida.png" type="Texture" id=20]
 [ext_resource path="res://cenas/pause.tscn" type="PackedScene" id=21]
 [ext_resource path="res://particles/chuva.png" type="Texture" id=22]
-[ext_resource path="res://cenas/Dengueboss.tscn" type="PackedScene" id=23]
 [ext_resource path="res://fonts/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" type="DynamicFontData" id=24]
 
 [sub_resource type="Animation" id=4]
@@ -84,6 +83,10 @@ script = ExtResource( 2 )
 [node name="multiply" type="Timer" parent="."]
 autostart = true
 script = ExtResource( 15 )
+
+[node name="DengueBoss spawn" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 342, 145 )
@@ -151,8 +154,6 @@ spd = 150
 position = Vector2( 578, 184 )
 collision_layer = 2
 
-[node name="Dengueboss" parent="." instance=ExtResource( 23 )]
-
 [node name="Dengue" type="KinematicBody2D" parent="."]
 position = Vector2( -380, -276 )
 script = ExtResource( 1 )
@@ -185,6 +186,7 @@ visible = false
 position = Vector2( -0.999969, 2.99997 )
 
 [node name="MobileControls" parent="." instance=ExtResource( 7 )]
+visible = false
 script = SubResource( 3 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
@@ -244,6 +246,7 @@ one_shot = true
 [connection signal="timeout" from="multiply" to="Position2D" method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="CoronaVirus" method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="Particles2D" method="_on_multiply_timeout"]
+[connection signal="timeout" from="DengueBoss spawn" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="NuvemSpawner/Nuvem" to="NuvemSpawner" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Position2D/Dengue" to="Position2D" method="_on_Dengue_timeout"]
 [connection signal="timeout" from="Position2D/Corona" to="Position2D" method="_on_corona_timeout"]

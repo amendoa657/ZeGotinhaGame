@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sprites/Dengue/mosquito da dengue.png" type="Texture" id=1]
 
@@ -53,7 +53,21 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -30 ), Vector2( 0, 0 ), Vector2( 0, 30 ) ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "entrada"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
 [sub_resource type="AnimationNodeStateMachine" id=5]
+states/entrada/node = SubResource( 7 )
+states/entrada/position = Vector2( 467, 102 )
+states/idle/node = SubResource( 8 )
+states/idle/position = Vector2( 164, 102 )
+transitions = [ "idle", "entrada", SubResource( 9 ) ]
+start_node = "idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
@@ -70,7 +84,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 10, 40 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "entrada"
+autoplay = "idle"
 playback_speed = 0.6
 anims/RESET = SubResource( 2 )
 anims/entrada = SubResource( 4 )

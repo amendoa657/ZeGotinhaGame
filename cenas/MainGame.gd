@@ -2,6 +2,7 @@ extends Node2D
 
 onready var transition = get_node("Transicaofoda/Fill")
 onready var animation = get_node("Transicaofoda/Fill/AnimationOut")
+var dengueboss = preload("res://cenas/Dengueboss.tscn")
 var particle = preload("res://cenas/particle.tscn")
 export (float, 2.0) var duration = 1.5
 var multiply = true
@@ -22,6 +23,7 @@ func _process(delta: float) -> void:
 	$GUI/Control/ProgressBar.value=$ZeGota.vida
 	if ($GUI/pause.reset==true):
 		get_tree().reload_current_scene()
+	
 
 func _on_multiply_timeout() -> void:
 	$Sprite/AnimationPlayer.playback_speed+=0.005
@@ -29,3 +31,10 @@ func _on_multiply_timeout() -> void:
 
 func _on_Button_pressed() -> void:
 		$ZeGota.vida-=10
+
+
+func _on_Timer_timeout():
+	var db = dengueboss.instance()
+	db.global_position = Vector2(500,0)
+	self.add_child(db)
+	pass # Replace with function body.

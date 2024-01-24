@@ -9,10 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "HBoxContainer",
+"class": "ContributorClass",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/ContributorClass.gd"
+}, {
+"base": "PanelContainer",
+"class": "GistItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/GistItem.gd"
+}, {
 "base": "Node",
 "class": "GuiTransition",
 "language": "GDScript",
 "path": "res://addons/simple-gui-transitions/transition.gd"
+}, {
+"base": "HBoxContainer",
+"class": "InvitationItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/InvitationItem.gd"
+}, {
+"base": "PanelContainer",
+"class": "RepositoryItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/RepositoryItem.gd"
 }, {
 "base": "Control",
 "class": "VirtualJoystick",
@@ -480,7 +500,11 @@ _global_script_classes=[ {
 "path": "res://addons/shaderV/tools/vec2Compose.gd"
 } ]
 _global_script_class_icons={
+"ContributorClass": "",
+"GistItem": "",
 "GuiTransition": "res://addons/simple-gui-transitions/icon.png",
+"InvitationItem": "",
+"RepositoryItem": "",
 "VirtualJoystick": "",
 "VisualShaderNodeNoiseGeneric2d": "",
 "VisualShaderNodeNoiseGeneric2dFractal": "",
@@ -585,15 +609,20 @@ config/use_hidden_project_data_directory=false
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PeanutGroup"
 boot_splash/show_image=false
-boot_splash/image="res://icon.png"
+boot_splash/image="res://sprites/icon.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.141176, 0.411765, 0.701961, 1 )
-config/icon="res://icon.png"
+config/icon="res://sprites/logoteste.png"
 
 [autoload]
 
 GuiTransitions="*res://addons/simple-gui-transitions/singleton.gd"
 ZeGota="*res://scripts/KinematicBody2D.gd"
+PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
+IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
+UserData="*res://addons/github-integration/scripts/user_data.gd"
+RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
+dengueboss_atack1="*res://cenas/Dengueboss_atack1.tscn"
 
 [display]
 
@@ -605,7 +634,7 @@ window/stretch/mode="2d"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/VirtualJoystick/plugin.cfg", "res://addons/joystick_control/plugin.cfg", "res://addons/simple-gui-transitions/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/VirtualJoystick/plugin.cfg", "res://addons/github-integration/plugin.cfg", "res://addons/joystick_control/plugin.cfg", "res://addons/simple-gui-transitions/plugin.cfg" )
 
 [gui]
 

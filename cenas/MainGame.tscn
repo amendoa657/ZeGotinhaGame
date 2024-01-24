@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/Dengue.gd" type="Script" id=1]
 [ext_resource path="res://cenas/MainGame.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://sprites/barradevida.png" type="Texture" id=20]
 [ext_resource path="res://cenas/pause.tscn" type="PackedScene" id=21]
 [ext_resource path="res://particles/chuva.png" type="Texture" id=22]
+[ext_resource path="res://sounds/music2.wav" type="AudioStream" id=23]
 [ext_resource path="res://fonts/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" type="DynamicFontData" id=24]
 
 [sub_resource type="Animation" id=4]
@@ -186,7 +187,6 @@ visible = false
 position = Vector2( -0.999969, 2.99997 )
 
 [node name="MobileControls" parent="." instance=ExtResource( 7 )]
-visible = false
 script = SubResource( 3 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
@@ -241,6 +241,9 @@ one_shot = true
 
 [node name="Transicaofoda" parent="." instance=ExtResource( 13 )]
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+
 [connection signal="timeout" from="multiply" to="." method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="multiply" method="_on_multiply_timeout"]
 [connection signal="timeout" from="multiply" to="Position2D" method="_on_multiply_timeout"]
@@ -255,3 +258,4 @@ one_shot = true
 [connection signal="timeout" from="Dengue/Timer" to="Dengue" method="_on_Timer_timeout"]
 [connection signal="timeout" from="GUI/Timer" to="GUI/Label" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Particles2D/Timer" to="Particles2D" method="_on_Timer_timeout"]
+[connection signal="finished" from="MusicPlayer" to="." method="_on_MusicPlayer_finished"]

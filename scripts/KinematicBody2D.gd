@@ -31,3 +31,4 @@ func damage():
 		$Timer.start()
 		delay=true
 		$AnimationPlayer.play("damage")
+		$hurt.play()

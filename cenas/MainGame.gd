@@ -9,18 +9,17 @@ var multiply = true
 var first = true
 
 func _ready():
-	animation.play("out_anim")
-	animation.playback_speed = duration
-	
+	$MusicPlayer.play()
+	pass
 
-func _process(delta: float) -> void:
+func _process(delta):
+	$GUI/Control/ProgressBar.value = $ZeGota.vida
 	if ($multiply.time_now==20) and (first==true):
 		$Position2D/Dengue.start()
 		first=false
 	print("2")
 	if ($Sprite/AnimationPlayer.playback_speed<=7.0):
 		multiply=false
-	$GUI/Control/ProgressBar.value=$ZeGota.vida
 	if ($GUI/pause.reset==true):
 		get_tree().reload_current_scene()
 	
@@ -37,4 +36,9 @@ func _on_Timer_timeout():
 	var db = dengueboss.instance()
 	db.global_position = Vector2(500,0)
 	self.add_child(db)
+	pass # Replace with function body.
+
+
+func _on_MusicPlayer_finished():
+	$MusicPlayer.play()
 	pass # Replace with function body.

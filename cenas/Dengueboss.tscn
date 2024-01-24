@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/Dengue/mosquito da dengue.png" type="Texture" id=1]
+[ext_resource path="res://cenas/Dengueboss.gd" type="Script" id=2]
+[ext_resource path="res://cenas/Dengueboss_atack1.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 31.5
@@ -72,6 +74,7 @@ start_node = "idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="Dengueboss" type="KinematicBody2D"]
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 379.25, 131.633 )
@@ -79,9 +82,9 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="MosquitoDaDengue" type="Sprite" parent="."]
-position = Vector2( 350, 123.133 )
+position = Vector2( 304, 138.133 )
 texture = ExtResource( 1 )
-offset = Vector2( 10, 40 )
+offset = Vector2( 56, 25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -93,5 +96,13 @@ anims/idle = SubResource( 3 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 6 )
+
+[node name="Dengue_atack" parent="." instance=ExtResource( 3 )]
+position = Vector2( 135, -77.0872 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

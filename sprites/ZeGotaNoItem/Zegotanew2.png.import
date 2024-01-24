@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://import/Zegotanew2.png-bcadec6686c9bb35f66ba194ac479695.stex"
+path="res://import/zegotanew2.png-9b2d447404e81f48ae47461bf7cb51e0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ZeGotaNoItem/Zegotanew2.png"
-dest_files=[ "res://import/Zegotanew2.png-bcadec6686c9bb35f66ba194ac479695.stex" ]
+source_file="res://sprites/ZeGotaNoItem/zegotanew2.png"
+dest_files=[ "res://import/zegotanew2.png-9b2d447404e81f48ae47461bf7cb51e0.stex" ]
 
 [params]
 

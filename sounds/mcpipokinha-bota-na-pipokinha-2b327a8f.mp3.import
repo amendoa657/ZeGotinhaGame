@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://import/mcpipokinha-bota-na-pipokinha-2b327a8f.mp3-cf4475bf493efdaf1ace1f5f13cb5ee2.mp3str"
+
+[deps]
+
+source_file="res://sounds/mcpipokinha-bota-na-pipokinha-2b327a8f.mp3"
+dest_files=[ "res://import/mcpipokinha-bota-na-pipokinha-2b327a8f.mp3-cf4475bf493efdaf1ace1f5f13cb5ee2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

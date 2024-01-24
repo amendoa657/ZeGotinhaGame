@@ -10,11 +10,12 @@ func _unhandled_input(event):
 		self.paused = !paused
 
 func set_paused(value):
+	$Control/voltaraojogo.grab_focus()
 	paused = value
 	get_tree().paused = paused
 	visible = paused
-	$CenterContainer/VBoxContainer/resume.grab_focus()
-	$Node2D.visible=false
+#	$Control/voltaraojogo.grab_focus()
+#	$Node2D.visible=false
 	
 func _on_Button_pressed():
 	self.paused = false
@@ -26,18 +27,29 @@ func _on_Button2_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 
-func _on_options_pressed() -> void:
-	$Node2D.on_options=true
-	$Node2D.visible=true
-	$Node2D/Control/TabContainer/Control/Voltar.grab_focus()
-	process_verify=true
+
 	
 func _process(delta: float) -> void:
-	if ($Node2D.on_options == false) and (process_verify==true):
-		$CenterContainer/VBoxContainer/resume.grab_focus()
-		process_verify=false
+	pass
 
+	
 
-func _on_reiniciar_pressed():
-	reset=true
+func _on_voltaraojogo_pressed():
 	self.paused=false
+	pass # Replace with function body.
+
+
+func _on_opcoes_pressed():
+	$OptionsNode.visible=true
+	pass # Replace with function body.
+
+
+func _on_iraomenu_pressed():
+	paused=false
+	get_tree().change_scene("res://cenas/MainMenu.tscn")
+	pass # Replace with function body.
+
+
+func _on_sair_pressed():
+	get_tree().quit()
+	pass # Replace with function body.

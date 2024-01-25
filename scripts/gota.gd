@@ -10,5 +10,4 @@ func _process(delta: float) -> void:
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.is_in_group("zegota"):
 		body.damage()
-		$Particles2D.emitting=true
 		self.queue_free()

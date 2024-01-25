@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://sprites/Dengue/mosquito da dengue.png" type="Texture" id=1]
 [ext_resource path="res://cenas/Dengueboss.gd" type="Script" id=2]
-[ext_resource path="res://cenas/Dengueboss_atack1.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 31.5
@@ -97,9 +96,6 @@ anims/idle = SubResource( 3 )
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 6 )
-
-[node name="Dengue_atack" parent="." instance=ExtResource( 3 )]
-position = Vector2( 135, -77.0872 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

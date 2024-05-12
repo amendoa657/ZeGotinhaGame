@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://sprites/ZeGota/da42b89e-e618-4500-a88f-98da20fe0f6a.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://sprites/ZeGota/Zegota1.png" type="Texture" id=18]
 [ext_resource path="res://sprites/ZeGota/Zegota2.png" type="Texture" id=19]
 [ext_resource path="res://sounds/hurt.wav" type="AudioStream" id=20]
+[ext_resource path="res://scripts/FirePosition.gd" type="Script" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -86,6 +87,7 @@ tracks/0/keys = {
 self_modulate = Color( 1, 1, 1, 0.286275 )
 position = Vector2( 118, 50 )
 scale = Vector2( 1.5, 1.5 )
+collision_mask = 30
 input_pickable = true
 script = ExtResource( 1 )
 
@@ -118,5 +120,14 @@ anims/damage = SubResource( 5 )
 [node name="hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
 
+[node name="FirePosition" type="Position2D" parent="."]
+position = Vector2( 32.6667, 4.66666 )
+script = ExtResource( 21 )
+
+[node name="FireTime" type="Timer" parent="FirePosition"]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_enemy_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="FirePosition/FireTime" to="FirePosition" method="_on_FireTime_timeout"]

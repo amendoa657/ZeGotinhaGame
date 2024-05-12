@@ -7,6 +7,8 @@ var speed=80
 var initial_speed=130
 var primeiro=true
 var wait=true
+var vida=30
+var delay = false
 
 func _on_Area2D_body_exited(body):
 	if body.name=="ZeGota" and (primeiro==true):
@@ -29,6 +31,10 @@ func _process(delta):
 		$CollisionShape2D.disabled=true
 	if (speed>=110):
 		wait=false
+	if global_position.x<=-700 or global_position.y<=-900 or global_position.y>=900:
+		queue_free()
+	if vida<=0:
+		queue_free()
 
 func _on_Area2D_body_entered(body):
 	if body.name=="ZeGota" and (primeiro==true):
@@ -44,3 +50,12 @@ func _on_Damage_body_entered(body: Node) -> void:
 func _on_multiply_timeout():
 	if (wait==true) and (get_parent().first==false):
 		speed+=0.1
+		
+func damage():
+		vida-=10
+		$hurt.play()
+
+
+func _on_Denvdamage_timeout():
+	delay=false
+	pass # Replace with function body.

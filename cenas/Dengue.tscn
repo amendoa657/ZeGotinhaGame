@@ -15,7 +15,7 @@ extents = Vector2( 987.438, 583.812 )
 radius = 4.0
 height = 34.0
 
-[node name="Dengue" type="KinematicBody2D"]
+[node name="Dengue" type="KinematicBody2D" groups=["danavel"]]
 script = ExtResource( 1 )
 spd = 278
 

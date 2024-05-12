@@ -61,6 +61,7 @@ scale = Vector2( 0.8, 0.8 )
 
 [node name="gota4" type="KinematicBody2D" parent="."]
 position = Vector2( 0.0789261, 10.044 )
+collision_layer = 32
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="gota4"]

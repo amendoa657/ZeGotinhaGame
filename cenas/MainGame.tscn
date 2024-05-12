@@ -86,7 +86,8 @@ autostart = true
 script = ExtResource( 15 )
 
 [node name="DengueBoss spawn" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 4.0
+one_shot = true
 autostart = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -119,7 +120,7 @@ collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 256, 150 )
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 7, 7 )
 
 [node name="NuvemSpawner" type="Position2D" parent="."]
 position = Vector2( 259, 122 )
@@ -195,7 +196,7 @@ script = SubResource( 3 )
 margin_left = 244.0
 margin_top = 8.0
 margin_right = 284.0
-margin_bottom = 27.0
+margin_bottom = 44.0
 theme = ExtResource( 19 )
 custom_fonts/font = SubResource( 10 )
 text = "17"
@@ -207,9 +208,14 @@ visible = false
 [node name="Control" type="Control" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 2.0
+margin_right = 1.0
+margin_bottom = 2.0
+rect_pivot_offset = Vector2( 6, 0 )
 script = ExtResource( 14 )
 
-[node name="ProgressBar" type="ProgressBar" parent="GUI/Control"]
+[node name="ZGvida" type="ProgressBar" parent="GUI/Control"]
 margin_left = 14.0
 margin_top = 19.0
 margin_right = 208.0

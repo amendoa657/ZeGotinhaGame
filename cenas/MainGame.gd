@@ -7,13 +7,14 @@ var particle = preload("res://cenas/particle.tscn")
 export (float, 2.0) var duration = 1.5
 var multiply = true
 var first = true
+var db = dengueboss.instance()
 
 func _ready():
 	$MusicPlayer.play()
 	pass
 
 func _process(delta):
-	$GUI/Control/ProgressBar.value = $ZeGota.vida
+	$GUI/Control/ZGvida.value = $ZeGota.vida
 	if ($multiply.time_now==20) and (first==true):
 		$Position2D/Dengue.start()
 		first=false
@@ -33,7 +34,7 @@ func _on_Button_pressed() -> void:
 
 
 func _on_Timer_timeout():
-	var db = dengueboss.instance()
+	db = dengueboss.instance()
 	db.global_position = Vector2(500,0)
 	self.add_child(db)
 	pass # Replace with function body.

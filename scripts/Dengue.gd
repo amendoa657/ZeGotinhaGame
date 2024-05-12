@@ -13,9 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_instance_valid(player_ref):
 		move_and_slide(dir*spd)
-	if (self.global_position.x <= -50):
-		self.queue_free()
 	spd=spd*1.003
+	if global_position.x<=-700 or global_position.y<=-700 or global_position.y>=700:
+		queue_free()
 
 func _on_Area2D_body_entered(body: Node) -> void:
 		if (body.name=="ZeGota"):

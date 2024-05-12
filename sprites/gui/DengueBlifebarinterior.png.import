@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://import/Zegotanew4.png-bfc6ed53e271aa712538849841c07111.stex"
+path="res://import/DengueBlifebarinterior.png-42b4469092b8cc991ae4b7b693bb1c71.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ZeGotaNoItem/Zegotanew4.png"
-dest_files=[ "res://import/Zegotanew4.png-bfc6ed53e271aa712538849841c07111.stex" ]
+source_file="res://sprites/gui/DengueBlifebarinterior.png"
+dest_files=[ "res://import/DengueBlifebarinterior.png-42b4469092b8cc991ae4b7b693bb1c71.stex" ]
 
 [params]
 

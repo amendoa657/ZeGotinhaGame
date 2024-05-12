@@ -16,3 +16,5 @@ func _on_Timer_timeout():
 func _process(delta):
 	$AnimatedSprite.set_animation(nuvemtext)
 	translate(Vector2(speed,0))
+	if global_position.x<=-700 or global_position.y<=-900 or global_position.y>=900:
+		queue_free()

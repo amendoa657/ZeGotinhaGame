@@ -1,6 +1,6 @@
 extends Timer
 var first = false
-var time_now = 0
+export var time_now = 1
 
 func _on_multiply_timeout() -> void:
 	time_now+=1
